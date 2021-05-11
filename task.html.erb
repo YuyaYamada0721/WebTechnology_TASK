@@ -23,5 +23,21 @@
       <input type="text" name="goya2" value="<%= data.join(' ') %>">
       <input type="submit" name="送信" >
     </form>
+
+    <% result = connection.exec("
+      SELECT * from crops
+      WHERE quality = false;
+      ") %>
+    <% data = [] %>
+    <% result.each do |record| %>
+      <%  data << "譲渡先：#{record["give_for"]}長さ：#{record["length"]}重さ：#{record["weight"]}クオリティー：#{record["quality"]}日付#{record["date"]}}" %>
+    <% end %>
+    <form action="goya.cgi" method="POST">
+      下記のボタンを押すと、品質が悪いゴーヤの情報ページに飛びます<br><br>
+      <!-- valueには、送りたいデータを代入する -->
+      <!-- name="goya"を、情報の目印とする -->
+      <input type="text" name="goya3" value="<%= data.join(' ') %>">
+      <input type="submit" name="送信" >
+    </form>
   </body>
 </html>

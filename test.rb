@@ -11,8 +11,7 @@ server = WEBrick::HTTPServer.new({
 end
 
 server.mount('/test', WEBrick::HTTPServlet::ERBHandler, 'test.html.erb')
-server.mount('/task', WEBrick::HTTPServlet::ERBHandler, 'task.html.erb')
-server.mount('/task2', WEBrick::HTTPServlet::ERBHandler, 'task2.html.erb')
+server.mount('/', WEBrick::HTTPServlet::ERBHandler, 'task.html.erb')
 
 server.mount('/indicate.cgi', WEBrick::HTTPServlet::CGIHandler, 'indicate.rb')
 server.mount('/goya.cgi', WEBrick::HTTPServlet::CGIHandler, 'goya.rb')
